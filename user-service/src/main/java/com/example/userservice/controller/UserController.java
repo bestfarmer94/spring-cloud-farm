@@ -14,8 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.userservice.vo.Greeting;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user-service/")
 public class UserController {
     private Environment env;
     private UserService userService;
@@ -29,7 +31,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/health_check")
+    @GetMapping("/health-check")
     public String status() {
         return "It's Working in User Service.";
     }
@@ -51,5 +53,21 @@ public class UserController {
         ResponseUser responseUser = mapper.map(userDto, ResponseUser.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
+    }
+
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<ResponseUser> getUserByUserId(@PathVariable String userId) {
+        ResponseUser result = new ModelMapper().map(userService.getUserByUserId(userId), ResponseUser.class);
+
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<ResponseUser>> getAllUsers() {
+        List<ResponseUser> result = userService.getUsersByAll().stream()
+                .map(userDto -> new ModelMapper().map(userDto, ResponseUser.class))
+                .toList();
+
+        return ResponseEntity.ok(result);
     }
 }

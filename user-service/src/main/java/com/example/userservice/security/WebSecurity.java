@@ -26,8 +26,7 @@ public class WebSecurity {
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(PathRequest.toH2Console()).permitAll()
-                        .requestMatchers("/users/**").permitAll()
-                        .requestMatchers("/error").permitAll()
+                        .requestMatchers("/**").permitAll()
                 )
                 .build();
     }
