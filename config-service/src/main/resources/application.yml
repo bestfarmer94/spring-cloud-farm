@@ -2,17 +2,27 @@ server:
   port: 8888
 
 spring:
-    application:
-        name: config-service
-    profiles:
-      active: native  # ??? ?? git ? ????, ???? ???? ??
-    cloud:
-      config:
-        server:
-          native:
-            search-locations: file:///${user.home}/Documents/github/native-file-repo
-          git:
-            uri: https://github.com/bestfarmer94/spring-cloud-config
+  application:
+    name: config-service
+  profiles:
+    active: native  # native 가 아니거나 생략한 경우, 하단의 git-uri 체크 하고 없으면 에러 발생
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:///${user.home}/Documents/github/native-file-repo
+        git:
+          uri: https://github.com/bestfarmer94/spring-cloud-config
 #            username:  # if private repository
 #            password:  # if private repository
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, busrefresh

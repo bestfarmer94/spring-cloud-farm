@@ -22,7 +22,12 @@ spring:
     import: optional:configserver:http://localhost:8888 # 구성정보 설정
   cloud:
     config:
-      name: ecommerce # yml 파일명 앞부분
+      name: config-service # yml 파일명 앞부분
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   instance:
@@ -41,10 +46,10 @@ logging:
     com.example.userservice: DEBUG
 
 management:
-    endpoints:
-      web:
-        exposure:
-            include: refresh, health, beans
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, busrefresh
 
 #token:
 #  expiration_time: 86400000 # 1 day in milliseconds
