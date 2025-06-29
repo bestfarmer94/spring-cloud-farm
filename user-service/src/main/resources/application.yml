@@ -18,6 +18,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  config:
+    import: optional:configserver:http://localhost:8888 # 구성정보 설정
+  cloud:
+    config:
+      name: ecommerce # yml 파일명 앞부분
 
 eureka:
   instance:
@@ -35,6 +40,12 @@ logging:
   level:
     com.example.userservice: DEBUG
 
-token:
-  expiration_time: 86400000 # 1 day in milliseconds
-  secret: 9fe8afac25f59e6ed7c65f0c9054b00a300a58951e1af899dad103041ca3efb51b175bb9fcf8e7a9c1aed17fa0a05dc882e831b4f12670607cbd2d2da46b5543
+management:
+    endpoints:
+      web:
+        exposure:
+            include: refresh, health, beans
+
+#token:
+#  expiration_time: 86400000 # 1 day in milliseconds
+#  secret: 9fe8afac25f59e6ed7c65f0c9054b00a300a58951e1af899dad103041ca3efb51b175bb9fcf8e7a9c1aed17fa0a05dc882e831b4f12670607cbd2d2da46b5543
