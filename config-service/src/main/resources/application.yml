@@ -28,4 +28,8 @@ management:
         include: health, busrefresh
 
 encrypt:
-  key: abcdefghijklmnopqrstuvwxyz1234567890 # 대칭키 방식
+#  key: abcdefghijklmnopqrstuvwxyz1234567890 # 대칭키 방식
+  key-store:  # 비대칭키 방식
+    location: file://${user.home}/Documents/keystore/apiEncryptionKey.jks
+    password: 1q2w3e4r
+    alias: apiEncryptionKey
