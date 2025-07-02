@@ -15,7 +15,7 @@ spring:
     import: optional:configserver:http://localhost:8888 # 구성정보 설정
   cloud:
     config:
-      name: config-service # application명 -> application.yml or 해당 파일명.yml 정보 읽음
+      name: ecommerce # application명 -> application.yml or 해당 파일명.yml 정보 읽음
     gateway:
       server:
         webflux:
@@ -104,5 +104,5 @@ management:
       exposure:
         include: refresh, health, beans, httpexchanges, busrefresh
 
-token:
-  secret: 9fe8afac25f59e6ed7c65f0c9054b00a300a58951e1af899dad103041ca3efb51b175bb9fcf8e7a9c1aed17fa0a05dc882e831b4f12670607cbd2d2da46b5543
+#token:
+#  secret: 9fe8afac25f59e6ed7c65f0c9054b00a300a58951e1af899dad103041ca3efb51b175bb9fcf8e7a9c1aed17fa0a05dc882e831b4f12670607cbd2d2da46b5543
